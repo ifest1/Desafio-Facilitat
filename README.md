@@ -1,8 +1,6 @@
 # Desafio-Facilitat
 Aplicação que será desenvolvida para o processo seletivo de dev estagiário.
 
-# Nome a ser pensado
-
 # Features
   - Tela de login
   - Tela de cadastro de usuário
