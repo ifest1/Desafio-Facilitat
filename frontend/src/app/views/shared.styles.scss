@@ -1,0 +1,110 @@
+.form-section {
+    display: flex;
+    justify-content: center;
+}
+.form-container {
+    display: inline-block;
+    justify-content: center;
+
+    border-radius: 0.5em;
+    align-items: center;
+    width: 30em;
+    margin: 2em;
+    padding: 2em;
+}
+
+.forgot-password {
+    text-align: right;
+    margin-top: 0.8em;
+    margin-bottom: 6em;
+}
+
+h1 {
+    text-align: center;
+    color: #FFFF;
+    font-family: 'Open Sans', sans-serif;
+}
+
+span {
+    color: #D3D3D3;
+    font-family: 'Open Sans', sans-serif;
+}
+
+a {
+    color: #D3D3D3;
+}
+
+.submit-button {
+    width: 100%;
+    height: 2.6em;
+    padding: 0.2em 0.4em;
+    margin-top: 2em;
+    box-sizing: border-box;
+    background-color: #D3D3D3;
+    color: #414141;
+    border-radius: 24px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    font-size: 1.1em;
+    border: none;
+}
+
+.submit-button:hover {
+    background-color: #FFFF;
+}
+
+.submit-button:active {
+    background-color: #FFFF;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+.submit-button:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.login-form {
+    font-family: inherit;
+    width: 100%;
+    border: 0;
+    border-bottom: 2px solid #D3D3D3;
+    outline: 0;
+    font-size: 1.3rem;
+    color: #D3D3D3;
+    padding: 7px 0;
+    background: transparent;
+    transition: border-color 0.2s;
+}
+.login-form:focus {
+    ~ .form-label {
+        position: absolute;
+        top: 0;
+        display: block;
+        transition: 0.2s;
+        font-size: 1rem;
+        color: #FFFF;
+        font-weight:700;    
+      }
+      padding-bottom: 6px;  
+      font-weight: 700;
+      border-width: 3px;
+      border-image: linear-gradient(to right, #FFF,#D3D3D3);
+      border-image-slice: 1;
+}
+
+.login-form {
+    &:required,&:invalid { box-shadow:none; }
+}
+
+.input {
+    position: relative;
+    padding: 15px 0 0;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 100%;
+  }
+
+.already-have-account {
+    margin-top: 6em;
+}

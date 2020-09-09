@@ -1,0 +1,18 @@
+<section class = "form-section">
+    
+    <div class="form-container">
+        <h1>Sign up</h1>
+        <div class="input">
+            <input [(ngModel)]="email" type="text" class="login-form" placeholder="Email">
+        </div>
+        <div class="input">
+            <input [(ngModel)]="password" type="password" class="login-form" placeholder="Password">
+        </div>
+        <button (click)="doLogin()" type="submit" class="submit-button">LOGIN</button>
+        <div class="forgot-password">
+            <span>i forgot my password</span>
+        </div>
+    <span>don't have an account? Sign in <a href="#">here</a></span>
+    </div>
+</section>
+
