@@ -1,8 +1,33 @@
-.form-section {
+//#e6b31e;
+* {
+    font-family: 'Open Sans', sans-serif;
+}
+h1 {
+    text-align: center;
+    color: #FFFF;
+}
+
+span {
+    color: #D3D3D3;
+}
+
+a {
+    color: #D3D3D3;
+}
+li {
+    list-style-type: none;
+}
+
+ul, li {
+    margin: 0;
+    padding: 0;
+}
+
+.section {
     display: flex;
     justify-content: center;
 }
-.form-container {
+.container {
     display: inline-block;
     justify-content: center;
 
@@ -19,20 +44,7 @@
     margin-bottom: 6em;
 }
 
-h1 {
-    text-align: center;
-    color: #FFFF;
-    font-family: 'Open Sans', sans-serif;
-}
 
-span {
-    color: #D3D3D3;
-    font-family: 'Open Sans', sans-serif;
-}
-
-a {
-    color: #D3D3D3;
-}
 
 .submit-button {
     width: 100%;
@@ -43,14 +55,13 @@ a {
     background-color: #D3D3D3;
     color: #414141;
     border-radius: 24px;
-    font-family: 'Open Sans', sans-serif;
     font-weight: 700;
     font-size: 1.1em;
     border: none;
 }
 
 .submit-button:hover {
-    background-color: #FFFF;
+    background-image: linear-gradient(to right, #e6b31e,#D3D3D3);
 }
 
 .submit-button:active {
@@ -68,9 +79,9 @@ a {
     font-family: inherit;
     width: 100%;
     border: 0;
-    border-bottom: 2px solid #D3D3D3;
+    border-bottom: 1px solid #D3D3D3;
     outline: 0;
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     color: #D3D3D3;
     padding: 7px 0;
     background: transparent;
@@ -83,14 +94,15 @@ a {
         display: block;
         transition: 0.2s;
         font-size: 1rem;
-        color: #FFFF;
-        font-weight:700;    
+        color: #e6b31e;   
       }
       padding-bottom: 6px;  
-      font-weight: 700;
       border-width: 3px;
-      border-image: linear-gradient(to right, #FFF,#D3D3D3);
+      border-image: linear-gradient(to right, #e6b31e,#D3D3D3);
       border-image-slice: 1;
+}
+.login-form:focus::placeholder {
+    color: transparent;
 }
 
 .login-form {

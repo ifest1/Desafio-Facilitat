@@ -11,18 +11,22 @@ import { routing } from './app.routing';
 import { UserService } from './controllers/user.service';
 import { LoginComponent } from './views/login/login.component';
 import { RegisterComponent } from './views/register/register.component';
+import { FeedComponent } from './views/feed/feed.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    FeedComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    routing
+    FontAwesomeModule,
+    routing,
   ],
   providers: [UserService],
   bootstrap: [AppComponent]
