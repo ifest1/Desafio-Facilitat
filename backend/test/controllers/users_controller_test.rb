@@ -1,8 +1,8 @@
 require 'test_helper'
 
-class UsersControllerTest < ActionDispatch::IntegrationTest
+class UserControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @user = users(:one)
+    @user = user(:one)
   end
 
   test "should get index" do

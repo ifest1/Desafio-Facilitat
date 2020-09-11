@@ -10,15 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_09_133620) do
+ActiveRecord::Schema.define(version: 2020_09_11_220402) do
 
-  create_table "users", force: :cascade do |t|
+  create_table "comment", force: :cascade do |t|
+    t.integer "post_id"
+    t.integer "user_id"
+    t.string "text"
+    t.binary "avatar"
+    t.integer "like"
+    t.index ["post_id"], name: "index_comment_on_post_id"
+    t.index ["user_id"], name: "index_comment_on_user_id"
+  end
+
+  create_table "post", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "text"
+    t.binary "image"
+    t.integer "like"
+    t.index ["user_id"], name: "index_post_on_user_id"
+  end
+
+  create_table "user", force: :cascade do |t|
     t.string "name"
-    t.string "email"
+    t.binary "avatar"
     t.string "password"
     t.string "phone"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
 end
