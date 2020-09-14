@@ -56,14 +56,15 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
       zeitwerk (~> 2.2, >= 2.2.2)
+    bcrypt (3.1.16)
+    bcrypt-ruby (3.1.5-x64-mingw32)
+      bcrypt (>= 3.1.3)
     bootsnap (1.4.8)
       msgpack (~> 1.0)
     builder (3.2.4)
     byebug (11.1.3)
     concurrent-ruby (1.1.7)
     crass (1.0.6)
-    email-validator (0.2.3)
-      activerecord (>= 2.2.3)
     erubi (1.9.0)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
@@ -142,9 +143,9 @@ PLATFORMS
   x64-mingw32
 
 DEPENDENCIES
+  bcrypt-ruby
   bootsnap (>= 1.4.2)
   byebug
-  email-validator
   puma (~> 4.1)
   rack-cors
   rails (~> 6.0.3, >= 6.0.3.2)

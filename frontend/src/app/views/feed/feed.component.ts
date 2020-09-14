@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FeedService } from 'src/app/controllers/feed.service';
-import { faEllipsisV, faThumbsUp, faShare, faComments } from '@fortawesome/free-solid-svg-icons'
+import { faEllipsisH, faThumbsUp, faShare, faComments } from '@fortawesome/free-solid-svg-icons'
 import { POSTS } from './mock-posts';
 
 @Component({
@@ -10,17 +10,27 @@ import { POSTS } from './mock-posts';
 })
 export class FeedComponent implements OnInit {
   posts = POSTS;
-  faEllipsisV = faEllipsisV;
+  user = {
+    name: "Iago",
+    avatar_path: "https://picsum.photos/id/237/200/300"
+  }
+  faEllipsisH = faEllipsisH;
   faThumbsUp = faThumbsUp;
   faShare = faShare;
   faComments = faComments;
+
   constructor(private feedService: FeedService) {
    }
   ngOnInit(): void {
     this.loadFeed();
+    this.getUserData();
   }
 
   loadFeed() {
     console.log(this.posts);
+  }
+
+  getUserData() {
+    console.log(this.user);
   }
 }

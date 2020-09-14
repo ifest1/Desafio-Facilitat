@@ -12,10 +12,16 @@ class UserController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
-    puts @user.email
-    if @user.new_record?
-      @user.save
+
+    @user = User.new({
+      name: params[:name],
+      email: params[:email],
+      password: params[:password],
+      password_confirmation: params[:password_confirmation],
+      phone: params[:phone]
+    })
+
+    if @user.save
       render json: @user, status: :created, location: @user
     else
       render json: @user.errors, status: :unprocessable_entity
