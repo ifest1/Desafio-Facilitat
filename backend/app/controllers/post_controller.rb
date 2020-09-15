@@ -1,10 +1,14 @@
 class PostController < ApplicationController
 
     def index
-        @posts = Post.all.includes(:comments).map do | post |
-            post.attributes.merge(:comments => post.comments)
+        if @user = authorized
+            @posts = Post.all.includes(:comments).map do | post |
+                post.attributes.merge(:comments => post.comments)
+            end
+            render json: {user: @user.as_json(only: [:name, :avatar]), posts: @posts}, status: :ok
+        else
+            head(:unauthorized)
         end
-        render json: @posts
     end
 
     def show
@@ -15,7 +19,7 @@ class PostController < ApplicationController
         if @post.save
             render json: @post, status: :created, location: @post
         else
-            render json: @post.errors, status: :unprocessable_entity
+            head(:unauthorized)
         end
     end
 

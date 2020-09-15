@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_14_204557) do
+ActiveRecord::Schema.define(version: 2020_09_15_165252) do
 
   create_table "comments", force: :cascade do |t|
     t.integer "user_id"
@@ -36,6 +36,8 @@ ActiveRecord::Schema.define(version: 2020_09_14_204557) do
     t.string "phone"
     t.string "email"
     t.string "password_salt"
+    t.string "authentication_token", limit: 30
+    t.index ["authentication_token"], name: "index_users_on_authentication_token", unique: true
   end
 
 end

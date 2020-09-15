@@ -16,20 +16,6 @@ export const POSTS: Post[] = [
             likes: 2,
             date: '28/08/2010'
         },
-        {
-          author: 'João',
-          avatar_path: 'https://picsum.photos/seed/picsum/200/300',
-          comment: 'Me conta uma novidade hahaha!',
-          likes: 2,
-          date: '28/08/2010'
-        },
-        {
-          author: 'João',
-          avatar_path: 'https://picsum.photos/seed/picsum/200/300',
-          comment: 'Me conta uma novidade hahaha!',
-          likes: 2,
-          date: '28/08/2010'
-        }
       ]
     },
     {

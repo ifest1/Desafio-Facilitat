@@ -6,7 +6,7 @@ Aplicação que será desenvolvida para o processo seletivo de dev estagiário, 
   - Tela de cadastro de usuário
   - CRUD em Ruby
   - Armazenamento das senhas em hash
-  - Retornando JSON com posts e comentários incluídos 
+  - Retornando JSON com posts e comentários associados
 
 # To Do
    - Popular o DB

@@ -1,7 +1,8 @@
 require 'bcrypt'
 class User < ActiveRecord::Base
     attr_accessor :password
-
+    acts_as_token_authenticatable
+    
     validates :name, presence: true
     before_save :encrypt_password
 

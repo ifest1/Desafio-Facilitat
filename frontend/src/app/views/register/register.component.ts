@@ -18,12 +18,13 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  doRegister() {
-    var result = this.userService.registerUser({
+  async doRegister() {
+    var result = await this.userService.registerUser({
       name: this.name,
       email: this.email,
       phone: this.phone,
       password: this.password,
+      password_confirmation: this.confirmPassword
     })
     console.log(result);
   }

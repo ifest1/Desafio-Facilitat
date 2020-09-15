@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
+
 @Injectable({
   providedIn: 'root'
 })
@@ -9,15 +10,19 @@ export class UserService {
   constructor(private http: HttpClient) {}
 
   getUsers() {
-    return this.http.get(this.url).subscribe();
+    return this.http.get(this.url);
   }
 
   getUser(id) {
-    return this.http.get(this.url.concat('/', id)).subscribe();
+    return this.http.get(this.url.concat('/', id))
   }
 
   registerUser(user) {
-    return this.http.post(this.url, user).subscribe();
+    var data = this.http.post(this.url, user).subscribe((data) => {
+      return data;
+    });
+
+    console.log(data);
   }
 
   updateUser(user) {

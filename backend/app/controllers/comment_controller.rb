@@ -1,18 +1,26 @@
 class CommentController < ApplicationController
     def index 
-        @comments = Comment.all
-        render json: @comments
+        if @user = authorized
+            @comments = Comment.all
+            render json: @comments
+        else
+            head(:unauthorized)
+        end
     end
     
     def show
     end
     
     def create
-        @comment = Comment.create(comment_params)
-        if @comment.save
-            render json: @comment, status: :created, location: @comment
+        if @user = authorized
+            @comment = Comment.create(comment_params)
+            if @comment.save
+                render json: @comment, status: :created, location: @comment
+            else
+                head(:bad_request)
+            end
         else
-            render json: @comment.errors, status: :unprocessable_entity
+            head(:unauthorized)
         end
     end
     

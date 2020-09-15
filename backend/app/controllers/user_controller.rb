@@ -3,8 +3,7 @@ class UserController < ApplicationController
 
   def index
     @users = User.all
-
-    render json: @users
+    render json: @users.as_json(only: [:email, :name, :avatar]), status: :ok
   end
 
   def show
@@ -22,17 +21,17 @@ class UserController < ApplicationController
     })
 
     if @user.save
-      render json: @user, status: :created, location: @user
+      head(:created)
     else
-      render json: @user.errors, status: :unprocessable_entity
+      head(:unauthorized)
     end
   end
 
   def update
     if @user.update(user_params)
-      render json: @user
+      render json: @user, status: :ok
     else
-      render json: @user.errors, status: :unprocessable_entity
+      head(:unauthorized)
     end
   end
 
