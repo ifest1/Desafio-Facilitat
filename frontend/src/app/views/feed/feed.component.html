@@ -1,3 +1,4 @@
+
 <section class="section-navbar">
         <span id="brand">Fakebook</span>
         <img id="user-avatar" src={{user.avatar_path}}>
@@ -13,17 +14,17 @@
                     <img src={{post.avatar_path}} alt="Avatar" class="avatar">
                     <div class="container-author">
                         <span class="author-name">{{post.author}}</span>
-                        <span class="post-date">{{post.date}}</span>
+                        <span class="post-date">{{post.created_at}}</span>
                     </div>
                     <button class="settings-button">
                         <fa-icon  class="settings-icon" [icon]="faEllipsisH"></fa-icon>
                     </button>
                 </div>
                 <div class="container-text">
-                    <p class="post-text">{{post.message}}</p>
+                    <p class="post-text">{{post.text}}</p>
                 </div>
                 <div class="container-image">
-                    <img src={{post.image}} alt="Post Image" class="post-image">
+                    <img src={{post.post_image_path}} alt="Post Image" class="post-image">
                 </div>
                 
                 <div class="container-reaction">
@@ -39,13 +40,13 @@
                                 <img class="comment-avatar" src={{comment.avatar_path}}>
                                 <div class="container-comment">
                                     <span class="comment-author">{{comment.author}}</span>
-                                    <p class="comment">{{comment.comment}}</p>
+                                    <p class="comment">{{comment.text}}</p>
                                 </div>
                             </div>
                         </li>
                     </ul>
                     <div class="container-tpcomment">
-                        <input type="text" class="comment-input">
+                        <input type="text" class="comment-input" placeholder="Type a comment...">
                     </div>
                 </div>
             </div>

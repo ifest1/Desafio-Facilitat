@@ -1,13 +1,14 @@
 class PostController < ApplicationController
 
     def index
-        if @user = authorized
+        if @user = is_logged_in
             @posts = Post.all.includes(:comments).map do | post |
                 post.attributes.merge(:comments => post.comments)
             end
-            render json: {user: @user.as_json(only: [:name, :avatar]), posts: @posts}, status: :ok
+            puts @user
+            render json: { user: @user.as_json(only: [:name, :avatar_path]), posts: @posts}, status: :ok
         else
-            head(:unauthorized)
+            render json: {status: :unauthorized}
         end
     end
 
@@ -15,11 +16,19 @@ class PostController < ApplicationController
     end
 
     def create
-        @post = Post.new(post_params)
-        if @post.save
-            render json: @post, status: :created, location: @post
-        else
-            head(:unauthorized)
+        @user = create_post_authorized
+        if @user.exists?
+            @post = Post.new({
+                user_id: post_params[:user_id],
+                text: post_params[:text],
+                like: 0,
+                post_image_path: random_image(),
+            })
+            if @post.save
+                render json: @post, status: :created, location: @post
+            else
+                render json: {status: :unauthorized}
+            end
         end
     end
 

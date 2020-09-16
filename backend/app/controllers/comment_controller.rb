@@ -17,10 +17,10 @@ class CommentController < ApplicationController
             if @comment.save
                 render json: @comment, status: :created, location: @comment
             else
-                head(:bad_request)
+                render json: {status: :bad_request}
             end
         else
-            head(:unauthorized)
+            render json: {status: :unauthorized}
         end
     end
     

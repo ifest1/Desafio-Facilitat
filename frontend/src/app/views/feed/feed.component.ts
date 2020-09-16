@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FeedService } from 'src/app/controllers/feed.service';
 import { faEllipsisH, faThumbsUp, faShare, faComments } from '@fortawesome/free-solid-svg-icons'
-import { POSTS } from './mock-posts';
 import { UserService } from 'src/app/controllers/user.service';
 
 @Component({
@@ -10,12 +9,8 @@ import { UserService } from 'src/app/controllers/user.service';
   styleUrls: ['./feed.component.scss', '../shared.styles.scss']
 })
 export class FeedComponent implements OnInit {
-  posts = POSTS;
-  user = {
-    name: "Iago",
-    avatar_path: "https://picsum.photos/id/237/200/300"
-  }
-  users = {};
+  posts;
+  user;
   faEllipsisH = faEllipsisH;
   faThumbsUp = faThumbsUp;
   faShare = faShare;
@@ -25,16 +20,35 @@ export class FeedComponent implements OnInit {
    }
   ngOnInit(): void {
     this.loadFeed();
-    this.getUserData().subscribe((data => {
-      this.users = data;
-    }));
   }
 
   loadFeed() {
-    
+    var token = localStorage.getItem('token');
+    this.feedService.getPosts(token).subscribe((data) => {
+      this.posts = data.posts;
+      this.user = data.user;
+      console.log(data);
+      this.posts.forEach((post, index, posts) => {
+        this.getUserData(post.user_id).subscribe((data) => {
+          posts[index]['author'] = data.name;
+          posts[index]['avatar_path'] = data.avatar_path;
+        });
+
+        post.comments.forEach((comment, index, comments)=> {
+          this.getUserData(comment.user_id).subscribe((data) => {
+            comments[index]['author'] = data.name;
+            comments[index]['avatar_path'] = data.avatar_path;
+          })
+        });
+      });
+    });
   }
 
-  getUserData() {
-    return this.userService.getUsers();
+  getUserData(user_id) {
+    return this.userService.getUser(user_id);
+  }
+
+  logout() {
+    localStorage.clear();
   }
 }

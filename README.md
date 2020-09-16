@@ -8,12 +8,10 @@ Aplicação que será desenvolvida para o processo seletivo de dev estagiário, 
   - Armazenamento das senhas em hash
   - Retornando JSON com posts e comentários associados
   - Retornando token de autenticação e dados do usuário e as postagens do feed
+  - Consumindo JSON do feed e mostrando na tela
 
 # To Do
    - Popular o DB
    - Adicionar interações no frontend
-   - Incrementar os likes (das postagens e dos comentários)
-   - Criar segunda página para adição de foto no cadastro de usuário
-   - Passar informações do usuário de uma página pra outra
+   - Incrementar os likes das postagens
    - Validar os inputs no frontend
-   - Pensar numa forma de armazenar as imagens das postagens e avatars

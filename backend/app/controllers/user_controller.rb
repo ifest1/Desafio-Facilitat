@@ -1,29 +1,24 @@
 class UserController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy]
 
-  def index
-    @users = User.all
-    render json: @users.as_json(only: [:email, :name, :avatar]), status: :ok
-  end
-
   def show
-    render json: @user
+    render json: @user.as_json(only: [:name, :avatar_path]), status: :ok
   end
 
   def create
-
     @user = User.new({
       name: params[:name],
       email: params[:email],
       password: params[:password],
       password_confirmation: params[:password_confirmation],
+      avatar_path: random_image(),
       phone: params[:phone]
     })
 
     if @user.save
-      head(:created)
+      render json: {status: :created}
     else
-      head(:unauthorized)
+      render json: {status: :unauthorized}
     end
   end
 
@@ -33,10 +28,6 @@ class UserController < ApplicationController
     else
       head(:unauthorized)
     end
-  end
-
-  def destroy
-    @user.destroy
   end
 
   private

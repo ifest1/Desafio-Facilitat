@@ -1,6 +1,5 @@
 .container {
-    background-color: #202020;
-    border: 1px solid #FFFF;
+    background-color: #414141;
 }
 .container-text {
     
@@ -15,7 +14,7 @@
     margin-bottom: 0;
 }
 .container-image {
-
+    
 }
 .container-reaction {
     margin-top: 0.5em;
@@ -48,6 +47,7 @@
 .post-image {
     width: 100%;
     max-height: 26em;
+    
 }
 
 .author-name, .post-date {
@@ -97,19 +97,25 @@
 }
 
 .comment-input {
-    width: 100%;
+    width: 88%;
     border: 1px solid #FFFF;
     border-radius: 2em;
     background-color: #414141;
     color: #ffff;
     padding: 0.3em;
     height: 2em;
+    margin-top: 1em;
+    padding-left: 1em;
+    
 }
 .comment-input:focus {
     outline: 0;
     border: 1px solid #e6b31e;
 }
 
+.comment-input:focus::placeholder{
+    color: transparent;
+}
 
 .comment-avatar {
     vertical-align: middle;

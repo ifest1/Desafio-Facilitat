@@ -1,9 +1,9 @@
 class SessionController < ApplicationController
     def create
         if @user = User.authenticate(params[:email], params[:password])
-            render json: @user.as_json(only: [:email, :authentication_token]), status: :success
+            render json: @user.as_json(only: [:name, :authentication_token, :avatar]), status: :ok
         else
-            head(:unauthorized)
+            render json: {status: :unauthorized}
         end
     end
 end

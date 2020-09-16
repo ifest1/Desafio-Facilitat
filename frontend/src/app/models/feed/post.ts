@@ -1,18 +1,30 @@
-export class Post {
-    id: number;
-    author: string;
-    avatar_path: string;
-    message: string;
-    image: string;
-    date: string;
-    likes: number;
-    comments: [
+interface Success {
+    user: {
+      name: string;
+      avatar: string;
+    }
+    posts: {
+      id: number,
+      user_id: number,
+      text: string;
+      image: string;
+      like: number;
+      created_at: string;
+      comments: [
         {
-            author: string;
-            avatar_path: string;
-            comment: string;
-            likes: number;
-            date: string
+          id: number,
+          user_id: number,
+          post_id: number,
+          text: string;
+          like: number;
+          created_at: string;
         }
-    ]
-}
+      ]
+    }
+  }
+  
+  interface Failure {
+    status: string;
+  }
+  
+  export type PostResponse = Success | Failure;
