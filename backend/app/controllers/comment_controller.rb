@@ -8,12 +8,14 @@ class CommentController < ApplicationController
         end
     end
     
-    def show
-    end
-    
     def create
-        if @user = authorized
-            @comment = Comment.create(comment_params)
+        if @user = is_logged_in
+            logger.debug @user[:id]
+            @comment = Comment.create({
+                user_id: @user[:id],
+                post_id: comment_params[:post_id],
+                text: comment_params[:text]
+            })
             if @comment.save
                 render json: @comment, status: :created, location: @comment
             else
@@ -23,14 +25,8 @@ class CommentController < ApplicationController
             render json: {status: :unauthorized}
         end
     end
-    
-    def update
-    end
-        
-    def destroy
-    end
 
     def comment_params
-        params.require(:comment).permit(:post_id, :user_id, :text)
+        params.require(:comment).permit(:post_id, :text)
     end
 end

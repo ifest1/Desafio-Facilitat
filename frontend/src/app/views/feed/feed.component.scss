@@ -36,6 +36,9 @@
     display: flex;
     flex-grow: 3;
 }
+.container-likes {
+    margin-top: 0.6em;
+}
 
 .container-comment {
     background-color: #414141;
@@ -46,8 +49,9 @@
 }
 
 .container-tpcomment {
-    
+    display: flex;
 }
+
 #avatar {
     vertical-align: middle;
     width: 40px;
@@ -86,10 +90,10 @@
     color: #A9A9A9;
 }
 
-#post-comment {
-    margin-top: 2em;
+.post-comment {
+    margin-top: 1em;
     display: flex;
-    margin-bottom: 2em;
+    margin-bottom: 0.4em;
 }
 
 #react-btn {
@@ -98,58 +102,83 @@
     background: transparent; 
     color: #d3d3d3;
     padding: 0.6em;
-    border-radius: 2em;
+    border-radius: 1em;
     border: 0;
 }
 
 #react-btn:hover {
-    background-image: linear-gradient(to right, #e6b31e,#D3D3D3);
-    color: #202020;
+    background-color: #3A3B3C;
 }
 
 #react-btn:focus {
+    background-image: linear-gradient(to right, #e6b31e, #D3D3D3);
+    color: #242526;
     outline: 0;
 }
 
-#comment-input {
+.comment-input {
     width: 98%;
     border: 1px solid #FFFF;
-    border-radius: 2em;
+    border-radius: 1em;
     background-color: #3A3B3C;
+    padding-bottom: 0.2em;
     color: #ffff;
-    padding: 0.3em;
     height: 2em;
     margin-top: 1em;
     padding-left: 1em;
     
 }
-#comment-input:focus {
+.comment-input:focus {
     outline: 0;
-    border: 1px solid #e6b31e;
+}
+.comment-input::placeholder {
+    color: #d3d3d3;
+}
+.comment-input:focus::placeholder{
+    color: #fff;
 }
 
-#comment-input:focus::placeholder{
-    color: transparent;
+.comment-photo {
+    width: 30px;
+    height: 1.4em;
+    margin-top: 1em;
+    box-sizing: border-box;
+    background-color: #3A3B3C;
+    color: #414141;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 1.1em;
+    border: none;
+    margin-left: -35px;
 }
 
-#comment-avatar {
+#add-photo-icon {
+    color: #ffff;
+}
+
+#comment-submit:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.comment-avatar {
     vertical-align: middle;
     width: 30px;
     height: 30px;
     border-radius: 50%;
 }
 
-#comment-author, .comment {
+.comment-author, .comment {
     margin: 0;
     margin-bottom: 0.3em;
     margin-left: 0.2em;
 }
-#comment-author {
+.comment-author {
     font-size: 0.72em;
     font-weight: 750;
     margin: 0;
 }
-#comment {
+.comment {
     color: #ffff;
     font-size: 0.82em;
 }
@@ -164,7 +193,10 @@
     background-color: transparent;
     margin-left: auto;
     border: 0;
-    border-radius: 10%;
+    border-radius: 100px;
+    height: 2.5em;
+    width: 2.4em;
+
 }
 
 #settings-button:focus {
@@ -172,10 +204,7 @@
 }
 
 #settings-button:hover {
-    background-color: #d3d3d3;
-    #settings-icon {
-        color: #202020;
-    }
+    background-color: #3A3B3C;
 }
 
 #settings-icon {

@@ -15,7 +15,8 @@ class User < ActiveRecord::Base
     validates_presence_of :password, :on => :create
 
     has_many :posts 
-    has_many :comments, :through => :posts
+    has_many :comments
+    has_many :likes
 
     validates_associated :posts
     validates_associated :comments

@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   resources :post, :path => "posts"
   resources :comment, :path => "comments"
   resources :session, :path => "sessions"
+  resources :like, :path => "likes"
 end

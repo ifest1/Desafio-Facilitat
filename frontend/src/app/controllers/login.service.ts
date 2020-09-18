@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
+import { BASE_URL } from './config';
 interface Success {
   authentication_token: string;
   name: string;
@@ -17,7 +17,7 @@ type AuthResponse = Success | Failure;
   providedIn: 'root'
 })
 export class LoginService {
-  private url: string = "http://localhost:3000/sessions";
+  private url: string = BASE_URL.concat("/sessions");
 
   constructor(private http: HttpClient) { }
 

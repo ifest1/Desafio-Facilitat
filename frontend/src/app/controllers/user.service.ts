@@ -14,7 +14,7 @@ export class UserService {
   }
 
   getUser(id) {
-    return this.http.get(this.url.concat('/', id))
+    return this.http.get(this.url.concat('/', id));
   }
 
   registerUser(user) {

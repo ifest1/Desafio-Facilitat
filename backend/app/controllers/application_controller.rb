@@ -1,16 +1,11 @@
 class ApplicationController < ActionController::API
-  def create_post_authorized
-    if token = get_token
-      @user = User.where({authentication_token: token, id: params[:user_id]})
-      @user
-    else
-      nil
-    end
-  end
 
   def is_logged_in
     if token = get_token
       @user = User.where({authentication_token: token}).first
+      @user
+    else
+      nil
     end
   end
 
