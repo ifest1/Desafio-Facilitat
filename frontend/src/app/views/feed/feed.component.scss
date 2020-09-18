@@ -1,12 +1,27 @@
-.container {
-    background-color: #414141;
+
+.container-feed {
+    background-color: #242526;
+    display: inline-block;
+    justify-content: center;
+    border-radius: 0.5em;
+    align-items: center;
+    width: 40em;
+    margin: 2em;
+    padding: 2em;
 }
 .container-text {
     
 }
 
+.container-post {
+
+}
+
 .section-navbar {
     display: flex;
+    background-color: #242526;
+    margin: 0!important;
+    height: 3.7em;
 }
 
 .container-avatar {
@@ -33,52 +48,52 @@
 .container-tpcomment {
     
 }
-.avatar {
+#avatar {
     vertical-align: middle;
     width: 40px;
     height: 40px;
     border-radius: 50%;
 }
 
-.post-text {
+#post-text {
     color: #ffff;
 }
 
-.post-image {
+#post-image {
     width: 100%;
-    max-height: 26em;
+    max-height: 45em;
     
 }
 
-.author-name, .post-date {
+#author-name, .post-date {
     display: block;
 }
 
-.author-name, .comment-author {
+#author-name, .comment-author {
     color: #ffff;
     font-weight: 700;
     margin-left: 0.5em;
 }
 
-.author-name {
+#author-name {
     font-size: 1em;
 }
 
-.post-date {
+#post-date {
     margin-top: 0.3em;
-    margin-left: 1em;
+    margin-left: 0.7em;
     font-size: 0.7em;
     color: #A9A9A9;
 }
 
-.post-comment {
+#post-comment {
     margin-top: 2em;
     display: flex;
     margin-bottom: 2em;
 }
 
-.react-btn {
-    width: 33.3%;
+#react-btn {
+    width: 50%;
     box-sizing: border-box;
     background: transparent; 
     color: #d3d3d3;
@@ -87,20 +102,20 @@
     border: 0;
 }
 
-.react-btn:hover {
+#react-btn:hover {
     background-image: linear-gradient(to right, #e6b31e,#D3D3D3);
     color: #202020;
 }
 
-.react-btn:focus {
+#react-btn:focus {
     outline: 0;
 }
 
-.comment-input {
-    width: 88%;
+#comment-input {
+    width: 98%;
     border: 1px solid #FFFF;
     border-radius: 2em;
-    background-color: #414141;
+    background-color: #3A3B3C;
     color: #ffff;
     padding: 0.3em;
     height: 2em;
@@ -108,76 +123,84 @@
     padding-left: 1em;
     
 }
-.comment-input:focus {
+#comment-input:focus {
     outline: 0;
     border: 1px solid #e6b31e;
 }
 
-.comment-input:focus::placeholder{
+#comment-input:focus::placeholder{
     color: transparent;
 }
 
-.comment-avatar {
+#comment-avatar {
     vertical-align: middle;
     width: 30px;
     height: 30px;
     border-radius: 50%;
 }
 
-.comment-author, .comment {
+#comment-author, .comment {
     margin: 0;
     margin-bottom: 0.3em;
     margin-left: 0.2em;
 }
-.comment-author {
+#comment-author {
     font-size: 0.72em;
     font-weight: 750;
     margin: 0;
 }
-.comment {
+#comment {
     color: #ffff;
     font-size: 0.82em;
 }
 
-.divider {
+#divider {
     border: none;
     height: 1px;
     background-color: #FFFF; 
 }
 
-.settings-button {
+#settings-button {
     background-color: transparent;
     margin-left: auto;
     border: 0;
     border-radius: 10%;
 }
 
-.settings-button:focus {
+#settings-button:focus {
     outline: 0;
 }
 
-.settings-button:hover {
+#settings-button:hover {
     background-color: #d3d3d3;
-    .settings-icon {
+    #settings-icon {
         color: #202020;
     }
 }
 
-.settings-icon {
+#settings-icon {
     color: #d3d3d3;
 }
 
 #user-avatar {
     vertical-align: middle;
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
     margin-left: auto;
-    margin-right: 1em;
+    margin-right: 0.6em;
+    margin-top: 0.8em;
 }
 
 #user-name {
     font-size: 0.8em;
-    margin-right: 0.2em;
-    margin-top: 0.8em;
+    margin-right: 2em;
+    margin-top: 1.6em;
+    font-weight: 600;
+}
+
+#brand {
+    font-size: 1.5em;
+    margin-top: 0.5em;
+    margin-left: 0.8em;
 }

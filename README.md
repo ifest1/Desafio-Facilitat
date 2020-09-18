@@ -12,6 +12,6 @@ Aplicação que será desenvolvida para o processo seletivo de dev estagiário, 
 
 # To Do
    - Popular o DB
-   - Adicionar interações no frontend
+   - Adicionar interações no feed
    - Incrementar os likes das postagens
-   - Validar os inputs no frontend
+   - Adicionar função de postagem no frontend

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../controllers/user.service'
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-register',
@@ -7,25 +9,25 @@ import { UserService } from '../../controllers/user.service'
   styleUrls: ['../shared.styles.scss']
 })
 export class RegisterComponent implements OnInit {
-  name: string;
-  email: string;
-  password: string;
-  phone: string;
-  confirmPassword: string;
+  registerForm: FormGroup;
 
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
+    this.registerForm = new FormGroup({
+      name: new FormControl(null, [Validators.maxLength(30), Validators.required]),
+      email: new FormControl(null, [Validators.required, Validators.email]),
+      phone: new FormControl(null, [Validators.required]),
+      password: new FormControl(null, [Validators.minLength(8), Validators.required]),
+      confirmPassword: new FormControl(null, [Validators.minLength(8), Validators.required]),
+    });
   }
 
-  async doRegister() {
-    var result = await this.userService.registerUser({
-      name: this.name,
-      email: this.email,
-      phone: this.phone,
-      password: this.password,
-      password_confirmation: this.confirmPassword
-    })
-    console.log(result);
+  doRegister() {
+    //var result = this.userService.registerUser({
+      
+    //})
+    console.log(this.registerForm.valid);
+    console.log(this.registerForm.value);
   }
 }

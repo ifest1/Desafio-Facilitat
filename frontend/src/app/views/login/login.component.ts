@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from '../../controllers/login.service';
 
@@ -9,28 +10,46 @@ import { LoginService } from '../../controllers/login.service';
   styleUrls: ['../shared.styles.scss']
 })
 export class LoginComponent implements OnInit {
-  email: string;
-  password: string;
+  loginForm: FormGroup
 
   constructor(private loginService: LoginService, private router: Router) {}
 
   ngOnInit(): void {
-
+    this.loginForm = new FormGroup({
+      email: new FormControl(null, [Validators.required, Validators.email]),
+      password: new FormControl(null, [Validators.required])
+    });
+    this.redirectIfLoggedIn();
   }
   
   doLogin() {
-    this.loginService.login(this.email, this.password).subscribe((data) => {
-      console.log(data);
+    var email = this.loginForm.controls['email'].value
+    var password = this.loginForm.controls['password'].value
+    this.loginService.login(email, password).subscribe((data) => {
+      
       if ('authentication_token' in data) {
         var { authentication_token, name } = data;
-        localStorage.setItem("name", name);
-        localStorage.setItem("token", authentication_token);
-        this.router.navigateByUrl('/feed');
+        this.storeData(name, authentication_token);
+        this.redirectToFeed();
       }
       else {
         //Caso o usuário tenha digitado as credenciais erradas.
         return;
       }
     });
+  }
+  redirectIfLoggedIn() {
+    if (localStorage.getItem('token')) {
+      this.redirectToFeed();
+    }
+  }
+
+  storeData(name, authentication_token) {
+    localStorage.setItem("name", name);
+    localStorage.setItem("token", authentication_token);
+  }
+
+  redirectToFeed() {
+    this.router.navigateByUrl('/feed');
   }
 }

@@ -51,7 +51,7 @@ ul, li {
     box-sizing: border-box;
     background-color: #D3D3D3;
     color: #414141;
-    border-radius: 24px;
+    border-radius: 10px;
     font-weight: 700;
     font-size: 1.1em;
     border: none;
@@ -85,14 +85,6 @@ ul, li {
     transition: border-color 0.2s;
 }
 .login-form:focus {
-    ~ .form-label {
-        position: absolute;
-        top: 0;
-        display: block;
-        transition: 0.2s;
-        font-size: 1rem;
-        color: #e6b31e;   
-      }
       padding-bottom: 6px;  
       border-width: 3px;
       border-image: linear-gradient(to right, #e6b31e,#D3D3D3);
@@ -100,10 +92,6 @@ ul, li {
 }
 .login-form:focus::placeholder {
     color: transparent;
-}
-
-.login-form {
-    &:required,&:invalid { box-shadow:none; }
 }
 
 .input {

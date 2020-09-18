@@ -3,50 +3,55 @@
         <span id="brand">Fakebook</span>
         <img id="user-avatar" src={{user.avatar_path}}>
         <span id="user-name">{{user.name}}</span>
-        
 </section>
-
+<section class="section-post">
+    <div class="container-post">
+        
+    </div>
+</section>
 <ul class="posts">
     <li class="post" *ngFor="let post of posts">
         <section class="section">
-            <div class="container">
+            <div class="container-feed">
                 <div class="container-avatar">
-                    <img src={{post.avatar_path}} alt="Avatar" class="avatar">
+                    <img src={{post.avatar_path}} alt="Avatar" id="avatar">
                     <div class="container-author">
-                        <span class="author-name">{{post.author}}</span>
-                        <span class="post-date">{{post.created_at}}</span>
+                        <span id="author-name">{{post.author}}</span>
+                        <span id="post-date">{{post.created_at}}</span>
                     </div>
-                    <button class="settings-button">
-                        <fa-icon  class="settings-icon" [icon]="faEllipsisH"></fa-icon>
+                    <button id="settings-button">
+                        <fa-icon id="settings-icon" [icon]="faEllipsisH"></fa-icon>
                     </button>
+                    <div class="dropdown-content">
+                        
+                    </div>
                 </div>
                 <div class="container-text">
-                    <p class="post-text">{{post.text}}</p>
+                    <p id="post-text">{{post.text}}</p>
                 </div>
                 <div class="container-image">
-                    <img src={{post.post_image_path}} alt="Post Image" class="post-image">
+                    <img src={{post.post_image_path}} alt="Post Image" id="post-image">
                 </div>
                 
                 <div class="container-reaction">
-                    <button class="react-btn"><fa-icon [icon]="faThumbsUp"></fa-icon></button>
-                    <button class="react-btn"><fa-icon [icon]="faComments"></fa-icon></button>
-                    <button class="react-btn"><fa-icon [icon]="faShare"></fa-icon></button>
+                    <button id="react-btn"><fa-icon [icon]="faThumbsUp"></fa-icon></button>
+                    <button id="react-btn"><fa-icon [icon]="faComments"></fa-icon></button>
                 </div>
-                <hr class="divider">
+                <hr id="divider">
                 <div>
                     <ul>
                         <li *ngFor="let comment of post.comments">
                             <div class="post-comment">
-                                <img class="comment-avatar" src={{comment.avatar_path}}>
+                                <img id="comment-avatar" src={{comment.avatar_path}}>
                                 <div class="container-comment">
-                                    <span class="comment-author">{{comment.author}}</span>
-                                    <p class="comment">{{comment.text}}</p>
+                                    <span id="comment-author">{{comment.author}}</span>
+                                    <p id="comment">{{comment.text}}</p>
                                 </div>
                             </div>
                         </li>
                     </ul>
                     <div class="container-tpcomment">
-                        <input type="text" class="comment-input" placeholder="Type a comment...">
+                        <input type="text" id="comment-input" placeholder="Type a comment...">
                     </div>
                 </div>
             </div>
