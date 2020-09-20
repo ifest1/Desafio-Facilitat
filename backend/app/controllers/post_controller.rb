@@ -16,12 +16,11 @@ class PostController < ApplicationController
     end
 
     def create
-        if @user.is_logged_in
+        if @user = is_logged_in
             @post = Post.new({
                 user_id: @user[:id],
                 text: post_params[:text],
-                like: 0,
-                post_image_path: random_image(),
+                post_image_path: large_random_image(),
             })
             if @post.save
                 render json: @post, status: :created
@@ -32,6 +31,6 @@ class PostController < ApplicationController
     end
 
     def post_params
-        params.require(:post).permit(:user_id, :text, :image, :like)
+        params.require(:post).permit(:text, :image)
     end
 end

@@ -3,15 +3,17 @@
         <span id="brand">Fakebook</span>
         <img id="user-avatar" src={{user.avatar_path}}>
         <span id="user-name">{{user.name}}</span>
-        <button id="logout" (click)="logout()">Logout</button>
+        <button id="logout" class="common-button" (click)="logout()">Logout</button>
 </section>
-<section class="section-post">
-    <div class="container-post">
-        
+<section class="section">
+    <div class="container-feed">
+        <h1>write post</h1>
+        <textarea cols="40" rows="5" id="post-textarea" [(ngModel)]="postText"></textarea>
+        <button id="post-button" class="common-button" (click)="post()">Post</button>
     </div>
 </section>
 <ul class="posts">
-    <li class="post" *ngFor="let post of posts; let i = index;">
+    <li class="post" *ngFor="let post of posts;">
         <section class="section">
             <div class="container-feed">
                 <div class="container-avatar">
@@ -37,8 +39,8 @@
                     <span class="likes"><fa-icon [icon]="faThumbsUp"></fa-icon> {{post.likes_amount}}</span>
                 </div>
                 <div class="container-reaction">
-                    <button class="react-btn" id="i" (click)="like(i)"><fa-icon [icon]="faThumbsUp"></fa-icon></button>
-                    <button class="react-btn" id="i"><fa-icon [icon]="faComments"></fa-icon></button>
+                    <button class="react-btn" (click)="like(post.id)" [ngClass]="{'active-button': post.liked}"><fa-icon [icon]="faThumbsUp"></fa-icon></button>
+                    <button class="react-btn"><fa-icon [icon]="faComments"></fa-icon></button>
                 </div>
                 <hr id="divider">
                 <div>
@@ -54,7 +56,7 @@
                         </li>
                     </ul>
                     <div class="container-tpcomment">
-                        <input #box type="text" class="comment-input" (keyup.enter)="comment(box, i)" placeholder="leave a comment...">
+                        <input #box type="text" class="comment-input" (keyup.enter)="comment(box, post.id)" placeholder="leave a comment...">
                         <button class="comment-photo"><fa-icon id="add-photo-icon" [icon]="faCamera"></fa-icon></button>
                     </div>
                 </div>

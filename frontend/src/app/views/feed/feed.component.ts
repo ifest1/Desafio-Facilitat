@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { UserService } from 'src/app/controllers/user.service';
 import { LikeService } from 'src/app/controllers/like.service';
 import { CommentService } from 'src/app/controllers/comment.service';
+import { PostService } from 'src/app/controllers/post.service';
 
 @Component({
   selector: 'app-feed',
@@ -12,21 +13,26 @@ import { CommentService } from 'src/app/controllers/comment.service';
   styleUrls: ['./feed.component.scss', '../shared.styles.scss']
 })
 export class FeedComponent implements OnInit {
-  posts;
-  user;
+  posts; user;
+  postText: string;
+
+  //icones
   faEllipsisH = faEllipsisH;
   faThumbsUp = faThumbsUp;
   faShare = faShare;
   faComments = faComments;
   faCamera = faCamera;
 
+  //token de autenticação
   private token;
 
+  //controllers
   constructor(
     private feedService: FeedService, 
     private userService: UserService, 
     private likeService: LikeService,
     private commentsService: CommentService,
+    private postService: PostService,
     private router: Router) {
    }
 
@@ -45,25 +51,30 @@ export class FeedComponent implements OnInit {
       this.posts = data.posts;
       this.user = data.user;
       this.countLikes();
-      this.initializeDataFeed();
+      this.getAvatars();
       this.setLikes();
-      console.log(this.posts);
-      console.log(this.user);
     });
   }
 
+  //funções de interação com o usuário
+  post() {
+    this.postService.post(this.token, this.postText).subscribe(() => {
+      this.loadFeed();
+      this.postText ='';
+    })
+  }
 
   like(postId) {
-    console.log(postId+1);
-    this.likeService.postLike(this.token, postId + 1).subscribe(() => {
-      this.updateData(postId);
+    this.likeService.postLike(this.token, postId).subscribe(() => {
+      this.updatePostData(postId);
     });
   }
+
 
   comment(input, postId) {
     if (!input.value) return;
-    this.commentsService.postComment(this.token, postId + 1, input.value).subscribe(data =>{
-      this.updateData(postId);
+    this.commentsService.postComment(this.token, postId, input.value).subscribe(data =>{
+      this.updatePostData(postId);
     });
     input.value = '';
   }
@@ -74,12 +85,14 @@ export class FeedComponent implements OnInit {
   }
 
 
-  //Funções de inicialização de dados/atualização
+  //funções de atualização/inicialização do state da página
+
+
   getUserData(userId) {
     return this.userService.getUser(userId);
   }
 
-  initializeDataFeed() {
+  getAvatars() {
     this.posts.forEach((post, i, posts) => {
       post.comments.forEach((comment, j, comments)=> {
         this.getUserData(comment.user_id).subscribe((data: any) => {
@@ -90,6 +103,7 @@ export class FeedComponent implements OnInit {
     });
   }
 
+  
   countLikes() {
     this.posts.forEach((post, index, posts) => {
       posts[index]['likes_amount'] = post.likes.length
@@ -109,14 +123,14 @@ export class FeedComponent implements OnInit {
     this.countLikes();
   }
 
-  updateData(postId) {
-    this.likeService.getLikes(this.token, postId + 1).subscribe((data: any) => {
-      this.posts[postId]['likes'] = data;
+  updatePostData(postId) {
+    this.likeService.getLikes(this.token, postId).subscribe((data: any) => {
+      this.posts[postId - 1]['likes'] = data;
       this.setLikes();
     })
     
-    this.commentsService.getComments(this.token, postId + 1).subscribe((data: any) => {
-      this.posts[postId]['comments'] = data;
+    this.commentsService.getComments(this.token, postId).subscribe((data: any) => {
+      this.posts[postId - 1]['comments'] = data;
     })
   }
 }

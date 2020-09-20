@@ -9,13 +9,11 @@
     margin: 2em;
     padding: 2em;
 }
+
 .container-text {
     
 }
 
-.container-post {
-
-}
 
 .section-navbar {
     display: flex;
@@ -106,20 +104,35 @@
     border: 0;
 }
 
-.react-btn:hover {
+.common-button {
+    height: 2em;
+    border: 1px solid #e6b31e;
+    color: #fff;
+    background-color: #242526;
+    font-size: 0.8em;
+}
+
+.common-button:hover {
     background-color: #3A3B3C;
 }
 
-.react-btn:active {
-    background-image: linear-gradient(to right, #e6b31e, #D3D3D3);
-    color: #242526;
+.common-button:focus {
     outline: 0;
+}
+
+.react-btn:hover {
+    background-color: #3A3B3C;
 }
 
 .react-btn:focus {
     outline: 0;
 }
 
+.active-button {
+    background-image: linear-gradient(to right, #e6b31e, #D3D3D3);
+    color: #242526;
+    outline: 0;
+}
 .comment-input {
     width: 98%;
     border: 1px solid #FFFF;
@@ -130,6 +143,7 @@
     height: 2em;
     margin-top: 1em;
     padding-left: 1em;
+    padding-right: 4em;
     
 }
 .comment-input:focus {
@@ -239,19 +253,31 @@
 }
 
 #logout {
-    height: 2em;
-    border: 1px solid #e6b31e;
-    color: #fff;
-    background-color: #242526;
-    font-size: 0.8em;
     margin-top: 1.1em;
     margin-right: 2em;
     border-radius: 2px;
 }
-#logout:hover {
+
+#post-textarea {
+    width: 98%;
     background-color: #3A3B3C;
+    border-radius: 10px;
+    color: #fff;
+    resize: none;
+    padding-left: 0.6em;
+    padding-top: 0.6em;
+    padding-right: 0.4;
+    font-size: 1em;
 }
 
-#logout:focus {
+#post-textarea:focus {
     outline: 0;
+    border: 0;
+    border: 1px solid #e6b31e;
+}
+#post-button {
+    font-size: 0.8em;
+    margin-top: 1.1em;
+    margin-right: 2em;
+    border-radius: 2px;
 }

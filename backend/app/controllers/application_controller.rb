@@ -12,6 +12,9 @@ class ApplicationController < ActionController::API
   def random_image
     'https://picsum.photos/200/300'
   end
+  def large_random_image
+    'https://picsum.photos/800/600'
+  end
 
   def get_token
     if token = request.headers["Authorization"]
