@@ -3,6 +3,7 @@
         <span id="brand">Fakebook</span>
         <img id="user-avatar" src={{user.avatar_path}}>
         <span id="user-name">{{user.name}}</span>
+        <button id="logout" (click)="logout()">Logout</button>
 </section>
 <section class="section-post">
     <div class="container-post">
@@ -10,7 +11,7 @@
     </div>
 </section>
 <ul class="posts">
-    <li class="post" *ngFor="let post of posts">
+    <li class="post" *ngFor="let post of posts; let i = index;">
         <section class="section">
             <div class="container-feed">
                 <div class="container-avatar">
@@ -33,11 +34,11 @@
                     <img src={{post.post_image_path}} alt="Post Image" id="post-image">
                 </div>
                 <div class="container-likes">
-                    <span id="likes"><fa-icon [icon]="faThumbsUp"></fa-icon> {{post.likes_amount}}</span>
+                    <span class="likes"><fa-icon [icon]="faThumbsUp"></fa-icon> {{post.likes_amount}}</span>
                 </div>
                 <div class="container-reaction">
-                    <button id="react-btn" (click)="like()" ng-focus="isLiked"><fa-icon [icon]="faThumbsUp"></fa-icon></button>
-                    <button id="react-btn" (click)="like()"><fa-icon [icon]="faComments"></fa-icon></button>
+                    <button class="react-btn" id="i" (click)="like(i)"><fa-icon [icon]="faThumbsUp"></fa-icon></button>
+                    <button class="react-btn" id="i"><fa-icon [icon]="faComments"></fa-icon></button>
                 </div>
                 <hr id="divider">
                 <div>
@@ -46,14 +47,14 @@
                             <div class="post-comment">
                                 <img class="comment-avatar" src={{comment.avatar_path}}>
                                 <div class="container-comment">
-                                    <span class="comment-author">{{comment.author}}</span>
+                                    <span class="comment-author">{{comment.name}}</span>
                                     <p class="comment">{{comment.text}}</p>
                                 </div>
                             </div>
                         </li>
                     </ul>
                     <div class="container-tpcomment">
-                        <input type="text" class="comment-input" placeholder="Type a comment...">
+                        <input #box type="text" class="comment-input" (keyup.enter)="comment(box, i)" placeholder="leave a comment...">
                         <button class="comment-photo"><fa-icon id="add-photo-icon" [icon]="faCamera"></fa-icon></button>
                     </div>
                 </div>

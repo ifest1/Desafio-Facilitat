@@ -39,13 +39,11 @@ export class LoginComponent implements OnInit {
     });
   }
   redirectIfLoggedIn() {
-    if (localStorage.getItem('token')) {
+    if (localStorage.getItem('token'))
       this.redirectToFeed();
-    }
   }
 
   storeData(name, authentication_token) {
-    localStorage.setItem("name", name);
     localStorage.setItem("token", authentication_token);
   }
 

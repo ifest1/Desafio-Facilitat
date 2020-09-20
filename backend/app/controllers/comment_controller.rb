@@ -1,13 +1,14 @@
 class CommentController < ApplicationController
-    def index 
-        if @user = authorized
-            @comments = Comment.all
-            render json: @comments
+    def get_post_comments
+        if @user = is_logged_in
+            @comments = Comment.where({post_id: comment_params[:post_id]}).includes(:user).map do | comment |
+                comment.attributes.merge(comment.user.as_json(only: [:name, :avatar_path]))
+            end
+            render json: @comments, status: :ok
         else
-            head(:unauthorized)
+            render json: {status: :bad_request}
         end
     end
-    
     def create
         if @user = is_logged_in
             logger.debug @user[:id]

@@ -11,17 +11,13 @@ export class LikeService {
   constructor(private http: HttpClient) {
    }
 
-  isAlreadyLiked(token, postId) {
-    var headers = getHeaders(token);
-    return this.http.get(this.url.concat('/', postId), headers)
-  }
-
   postLike(token, postId) {
     var headers = getHeaders(token);
+    return this.http.post(this.url, {post_id: postId}, headers);
+  }
 
-    if(!this.isAlreadyLiked)
-      return this.http.post(this.url, postId, headers);
-
-    return this.http.delete(this.url.concat('/', postId), headers);
+  getLikes(token, postId) {
+    var headers = getHeaders(token);
+    return this.http.post(BASE_URL.concat('/posts/likes'), {post_id: postId}, headers);
   }
 }

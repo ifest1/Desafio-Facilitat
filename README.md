@@ -15,3 +15,4 @@ Aplicação que será desenvolvida para o processo seletivo de dev estagiário, 
    - Adicionar interações no feed
    - Incrementar os likes das postagens
    - Adicionar função de postagem no frontend
+   - Programar placeholders das imagens (avatar e posts)

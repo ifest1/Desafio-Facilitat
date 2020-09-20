@@ -9,7 +9,7 @@ class PostController < ApplicationController
                     :likes => post.likes.as_json(only: [:user_id])
                 )
             end
-            render json: { user: @user.as_json(only: [:name, :avatar_path]), posts: @posts}, status: :ok
+            render json: { user: @user.as_json(only: [:id, :name, :avatar_path]), posts: @posts}, status: :ok
         else
             render json: {status: :unauthorized}
         end
@@ -29,14 +29,6 @@ class PostController < ApplicationController
                 render json: {status: :unauthorized}
             end
         end
-    end
-
-    def update
-        
-    end
-    
-    def destroy
-
     end
 
     def post_params
