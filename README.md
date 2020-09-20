@@ -11,8 +11,17 @@ Aplicação que será desenvolvida para o processo seletivo de dev estagiário, 
   - Consumindo JSON do feed e mostrando na tela
 
 # To Do
-   - Popular o DB
    - Adicionar interações no feed
-   - Incrementar os likes das postagens
    - Adicionar função de postagem no frontend
    - Programar placeholders das imagens (avatar e posts)
+   - Interação no cadastro e redirecionamento para o feed
+ 
+# Instalação do frontend
+`npm install` no diretório frontend
+
+Contas existentes no banco de dados:
+Login: `hiagoestrelas@gmail.com` Senha: `123123`
+Login: `robertoferraz@gmail.com` Senha: `123123`
+
+# Cadastro
+O cadastro só é efetuado mediante email válido e senha maior que 8 dígitos (as credenciais acima foram feitas diretas pelo banco de dados para testes).

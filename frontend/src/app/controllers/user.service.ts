@@ -18,11 +18,7 @@ export class UserService {
   }
 
   registerUser(user) {
-    var data = this.http.post(this.url, user).subscribe((data) => {
-      return data;
-    });
-
-    console.log(data);
+    return this.http.post(this.url, user);
   }
 
   updateUser(user) {

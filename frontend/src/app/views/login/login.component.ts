@@ -23,20 +23,17 @@ export class LoginComponent implements OnInit {
   }
   
   doLogin() {
+    if (this.loginForm.valid) {
     var email = this.loginForm.controls['email'].value
     var password = this.loginForm.controls['password'].value
-    this.loginService.login(email, password).subscribe((data) => {
-      
-      if ('authentication_token' in data) {
-        var { authentication_token, name } = data;
-        this.storeData(name, authentication_token);
-        this.redirectToFeed();
-      }
-      else {
-        //Caso o usuário tenha digitado as credenciais erradas.
-        return;
-      }
-    });
+      this.loginService.login(email, password).subscribe((data) => {
+        if ('authentication_token' in data) {
+          var { authentication_token, name } = data;
+          this.storeData(name, authentication_token);
+          this.redirectToFeed();
+        }
+      });
+    }
   }
   redirectIfLoggedIn() {
     if (localStorage.getItem('token'))
