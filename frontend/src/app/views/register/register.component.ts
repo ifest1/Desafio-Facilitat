@@ -27,10 +27,8 @@ export class RegisterComponent implements OnInit {
     if (this.registerForm.valid) {
       this.userService.registerUser(this.registerForm.value).subscribe((data: any) => {
         if (data.status == 'created') {
-          var email = this.registerForm.controls['email'].value;
-          var password = this.registerForm.controls['password'].value;
-            //this.redirectToLogin(email, password);
-            console.log('TO DO');
+          this.registerForm.reset();
+            this.redirectToLogin();
           }
         })
       }
