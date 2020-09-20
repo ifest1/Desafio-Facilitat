@@ -11,8 +11,6 @@ Aplicação que será desenvolvida para o processo seletivo de dev estagiário, 
   - Consumindo JSON do feed e mostrando na tela
 
 # To Do
-   - Adicionar interações no feed
-   - Adicionar função de postagem no frontend
    - Programar placeholders das imagens (avatar e posts)
    - Interação no cadastro e redirecionamento para o feed
  
