@@ -1,7 +1,8 @@
 require_relative 'boot'
  
 require "rails"
-
+require 'mini_magick'
+require "active_storage/engine"
 require "active_model/railtie"
 require "active_job/railtie"
 require "active_record/railtie"

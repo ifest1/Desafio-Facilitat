@@ -29,7 +29,6 @@ export class FeedComponent implements OnInit {
   //controllers
   constructor(
     private feedService: FeedService, 
-    private userService: UserService, 
     private likeService: LikeService,
     private commentsService: CommentService,
     private postService: PostService,
@@ -48,11 +47,9 @@ export class FeedComponent implements OnInit {
 
   loadFeed() {
     this.feedService.getPosts(this.token).subscribe((data: any) => {
+      console.log(data);
       this.posts = data.posts;
       this.user = data.user;
-      this.countLikes();
-      this.getAvatars();
-      this.setLikes();
     });
   }
 
@@ -66,7 +63,7 @@ export class FeedComponent implements OnInit {
 
   like(postId) {
     this.likeService.postLike(this.token, postId).subscribe(() => {
-      this.updatePostData(postId);
+      this.loadFeed()
     });
   }
 
@@ -74,7 +71,7 @@ export class FeedComponent implements OnInit {
   comment(input, postId) {
     if (!input.value) return;
     this.commentsService.postComment(this.token, postId, input.value).subscribe(data =>{
-      this.updatePostData(postId);
+      this.loadFeed()
     });
     input.value = '';
   }
@@ -82,55 +79,5 @@ export class FeedComponent implements OnInit {
   logout() {
     localStorage.clear();
     this.router.navigateByUrl('/login');
-  }
-
-
-  //funções de atualização/inicialização do state da página
-
-
-  getUserData(userId) {
-    return this.userService.getUser(userId);
-  }
-
-  getAvatars() {
-    this.posts.forEach((post, i, posts) => {
-      post.comments.forEach((comment, j, comments)=> {
-        this.getUserData(comment.user_id).subscribe((data: any) => {
-          posts[i].comments[j]["avatar_path"] = data.avatar_path;
-          posts[i].comments[j]["name"] = data.name; 
-        })
-      });
-    });
-  }
-
-  
-  countLikes() {
-    this.posts.forEach((post, index, posts) => {
-      posts[index]['likes_amount'] = post.likes.length
-    });
-  }
-
-  setLikes() {
-    this.posts.forEach((post, i, posts) => {
-      posts[i]['liked'] = false;
-
-      post.likes.map(like => {
-        if(like.user_id == this.user.id) {
-          posts[i]['liked'] = true;
-        }
-      })
-    });
-    this.countLikes();
-  }
-
-  updatePostData(postId) {
-    this.likeService.getLikes(this.token, postId).subscribe((data: any) => {
-      this.posts[postId - 1]['likes'] = data;
-      this.setLikes();
-    })
-    
-    this.commentsService.getComments(this.token, postId).subscribe((data: any) => {
-      this.posts[postId - 1]['comments'] = data;
-    })
   }
 }

@@ -1,21 +1,20 @@
 class UserController < ApplicationController
-  before_action :set_user, only: [:show, :update, :destroy]
-
   def show
-    render json: @user.as_json(only: [:name, :avatar_path]), status: :ok
+    user = User.find_by_id(params[:id])
+    featured_image = user.featured_image_url
+    render json: {user: user.as_json(only: [:name, :email]), featured_image: featured_image}, status: :ok
   end
 
   def create
-    @user = User.new({
+    user = User.new({
       name: params[:name],
       email: params[:email],
       password: params[:password],
       password_confirmation: params[:password_confirmation],
-      avatar_path: random_image(),
-      phone: params[:phone]
+      phone: params[:phone],
+      featured_image: params[:featured_image]
     })
-
-    if @user.save
+    if user.save
       render json: {status: :created}
     else
       render json: {status: :unauthorized}
@@ -23,19 +22,14 @@ class UserController < ApplicationController
   end
 
   def update
-    if @user.update(user_params)
-      render json: @user, status: :ok
+    if user.update(user_params)
+      render json: user, status: :ok
     else
       head(:unauthorized)
     end
   end
 
-  private
-    def set_user
-      @user = User.find(params[:id])
-    end
-
     def user_params
-      params.require(:user).permit(:name, :email, :password, :phone)
+      params.require(:user).permit(:name, :email, :password, :password_confirmation, :phone, :featured_image)
     end
 end

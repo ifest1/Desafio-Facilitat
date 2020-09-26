@@ -1,29 +1,44 @@
 class PostController < ApplicationController
 
     def index
-        if @user = is_logged_in
-            @posts = Post.includes(:user, :comments, :likes).map do | post |
+        if user = logged_in
+            posts = Post.includes(:user, :comments, :likes).map do | post |
                 post.attributes.merge(
-                    :user => post.user.as_json(only: [:name, :avatar_path]),
-                    :comments => post.comments.as_json(only: [:user_id, :text, :created_at]),
-                    :likes => post.likes.as_json(only: [:user_id])
+                    :post_image => post.post_image_url,
+                    :user => post.user.name,
+                    :user_avatar => post.user.featured_image_url,
+                    :comments => post.comments.includes(:user).map do | comment |
+                        comment.attributes.merge(
+                            :name => user.name,
+                            :user_avatar => user.featured_image_url,
+                        )
+                    end,
+                    :likes => post.likes,
+                    :likes_amount => post.likes.count
                 )
             end
-            render json: { user: @user.as_json(only: [:id, :name, :avatar_path]), posts: @posts}, status: :ok
+            
+            render json: { 
+                user: {
+                    name: user.name, 
+                    avatar_path: user.featured_image_url
+                }, 
+                posts: posts
+                }, status: :ok
         else
             render json: {status: :unauthorized}
         end
     end
 
     def create
-        if @user = is_logged_in
-            @post = Post.new({
-                user_id: @user[:id],
-                text: post_params[:text],
-                post_image_path: large_random_image(),
+        if user = logged_in
+            post = Post.new({
+                user_id: user[:id],
+                text: params[:text],
+                post_image: params[:post_image],
             })
-            if @post.save
-                render json: @post, status: :created
+            if post.save
+                render json: post, status: :created
             else
                 render json: {status: :unauthorized}
             end
@@ -31,6 +46,6 @@ class PostController < ApplicationController
     end
 
     def post_params
-        params.require(:post).permit(:text, :image)
+        params.require(:post).permit(:text, :post_image)
     end
 end

@@ -1,7 +1,7 @@
 
 <section class="section-navbar">
         <span id="brand">Fakebook</span>
-        <img id="user-avatar" src={{user.avatar_path}}>
+        <img id="user-avatar" [src]=user.avatar_path>
         <span id="user-name">{{user.name}}</span>
         <button id="logout" class="common-button" (click)="logout()">Logout</button>
 </section>
@@ -17,9 +17,9 @@
         <section class="section">
             <div class="container-feed">
                 <div class="container-avatar">
-                    <img src={{post.user.avatar_path}} alt="Avatar" id="avatar">
+                    <img [src]=post.user_avatar alt="Avatar" id="avatar">
                     <div class="container-author">
-                        <span id="author-name">{{post.user.name}}</span>
+                        <span id="author-name">{{post.user}}</span>
                         <span id="post-date">{{post.created_at}}</span>
                     </div>
                     <button id="settings-button">
@@ -33,7 +33,7 @@
                     <p id="post-text">{{post.text}}</p>
                 </div>
                 <div class="container-image">
-                    <img src={{post.post_image_path}} alt="Post Image" id="post-image">
+                    <img [src]=post.post_image alt="Post Image" id="post-image">
                 </div>
                 <div class="container-likes">
                     <span class="likes"><fa-icon [icon]="faThumbsUp"></fa-icon> {{post.likes_amount}}</span>
@@ -47,7 +47,7 @@
                     <ul>
                         <li *ngFor="let comment of post.comments">
                             <div class="post-comment">
-                                <img class="comment-avatar" src={{comment.avatar_path}}>
+                                <img class="comment-avatar" [src]=comment.user_avatar>
                                 <div class="container-comment">
                                     <span class="comment-author">{{comment.name}}</span>
                                     <p class="comment">{{comment.text}}</p>

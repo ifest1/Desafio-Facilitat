@@ -22,14 +22,14 @@ export class LoginComponent implements OnInit {
     this.redirectIfLoggedIn();
   }
   
-  doLogin() {
+  login() {
     if (this.loginForm.valid) {
     var email = this.loginForm.controls['email'].value
     var password = this.loginForm.controls['password'].value
       this.loginService.login(email, password).subscribe((data) => {
         if ('authentication_token' in data) {
-          var { authentication_token, name } = data;
-          this.storeData(name, authentication_token);
+          var { authentication_token } = data;
+          this.storeData(authentication_token);
           this.redirectToFeed();
         }
       });
@@ -40,8 +40,8 @@ export class LoginComponent implements OnInit {
       this.redirectToFeed();
   }
 
-  storeData(name, authentication_token) {
-    localStorage.setItem("token", authentication_token);
+  storeData(authentication_token) {
+    localStorage.setItem("token", "Bearer ".concat(authentication_token));
   }
 
   redirectToFeed() {
