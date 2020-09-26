@@ -7,14 +7,14 @@ class PostController < ApplicationController
                     :post_image => post.post_image_url,
                     :user => post.user.name,
                     :user_avatar => post.user.featured_image_url,
+                    :likes => post.likes,
+                    :likes_amount => post.likes.count,
                     :comments => post.comments.includes(:user).map do | comment |
                         comment.attributes.merge(
                             :name => user.name,
-                            :user_avatar => user.featured_image_url,
+                            :user_avatar => user.featured_image_url
                         )
-                    end,
-                    :likes => post.likes,
-                    :likes_amount => post.likes.count
+                    end
                 )
             end
             

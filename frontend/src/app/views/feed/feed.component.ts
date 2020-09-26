@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FeedService } from 'src/app/controllers/feed.service';
 import { faEllipsisH, faThumbsUp, faShare, faComments, faCamera } from '@fortawesome/free-solid-svg-icons'
 import { Router } from '@angular/router';
-import { UserService } from 'src/app/controllers/user.service';
 import { LikeService } from 'src/app/controllers/like.service';
 import { CommentService } from 'src/app/controllers/comment.service';
 import { PostService } from 'src/app/controllers/post.service';
@@ -47,7 +46,6 @@ export class FeedComponent implements OnInit {
 
   loadFeed() {
     this.feedService.getPosts(this.token).subscribe((data: any) => {
-      console.log(data);
       this.posts = data.posts;
       this.user = data.user;
     });
