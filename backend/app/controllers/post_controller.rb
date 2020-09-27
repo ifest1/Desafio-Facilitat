@@ -8,6 +8,7 @@ class PostController < ApplicationController
                     :user => post.user.name,
                     :user_avatar => post.user.featured_image_url,
                     :likes => post.likes,
+                    :liked => post.likes.empty? ? false : (user.likes & post.likes ? true : false),
                     :likes_amount => post.likes.count,
                     :comments => post.comments.includes(:user).map do | comment |
                         comment.attributes.merge(
@@ -20,7 +21,7 @@ class PostController < ApplicationController
             
             render json: { 
                 user: {
-                    name: user.name, 
+                    name: user.name,
                     avatar_path: user.featured_image_url
                 }, 
                 posts: posts
@@ -32,6 +33,7 @@ class PostController < ApplicationController
 
     def create
         if user = logged_in
+            puts params
             post = Post.new({
                 user_id: user[:id],
                 text: params[:text],

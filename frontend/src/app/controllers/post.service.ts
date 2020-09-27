@@ -9,10 +9,10 @@ export class PostService {
   private url: string = BASE_URL.concat('/posts');
   constructor(private http: HttpClient) { }
 
-  post(token, postText) {
+  post(token, formData) {
     var headers = getHeaders(token);
-    console.log(postText);
-    return this.http.post(this.url, {text: postText}, headers);
+    console.log(formData);
+    return this.http.post(this.url, formData, headers);
   }
 }
 

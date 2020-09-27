@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { LikeService } from 'src/app/controllers/like.service';
 import { CommentService } from 'src/app/controllers/comment.service';
 import { PostService } from 'src/app/controllers/post.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-feed',
@@ -13,7 +14,8 @@ import { PostService } from 'src/app/controllers/post.service';
 })
 export class FeedComponent implements OnInit {
   posts; user;
-  postText: string;
+  
+  postForm: FormGroup;
 
   //icones
   faEllipsisH = faEllipsisH;
@@ -31,7 +33,12 @@ export class FeedComponent implements OnInit {
     private likeService: LikeService,
     private commentsService: CommentService,
     private postService: PostService,
+    private formBuilder: FormBuilder,
     private router: Router) {
+      this.postForm = this.formBuilder.group({
+        text: '',
+        post_image: null,
+      })
    }
 
   ngOnInit(): void {
@@ -53,9 +60,13 @@ export class FeedComponent implements OnInit {
 
   //funções de interação com o usuário
   post() {
-    this.postService.post(this.token, this.postText).subscribe(() => {
+    var formData: any = new FormData();
+    formData.append("text", this.postForm.get('text').value);
+    formData.append("post_image", this.postForm.get('post_image').value);
+    this.postService.post(this.token, formData).subscribe((data) => {
+      console.log(data);
       this.loadFeed();
-      this.postText ='';
+      this.postForm.reset();
     })
   }
 
@@ -77,5 +88,13 @@ export class FeedComponent implements OnInit {
   logout() {
     localStorage.clear();
     this.router.navigateByUrl('/login');
+  }
+
+  uploadFile(event) {
+    const file = (event.target as HTMLInputElement).files[0];
+    this.postForm.patchValue({
+      post_image: file
+    });
+    this.postForm.get('post_image').updateValueAndValidity()
   }
 }

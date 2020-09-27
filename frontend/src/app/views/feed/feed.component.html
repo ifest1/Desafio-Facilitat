@@ -7,9 +7,12 @@
 </section>
 <section class="section">
     <div class="container-feed">
-        <h1>write post</h1>
-        <textarea cols="40" rows="5" id="post-textarea" [(ngModel)]="postText"></textarea>
-        <button id="post-button" class="common-button" (click)="post()">Post</button>
+        <form [formGroup]="postForm" (ngSubmit)="post()">
+            <h1>write post</h1>
+            <textarea cols="40" rows="5" id="post-textarea" formControlName="text"></textarea>
+            <input type="file" (change)="uploadFile($event)">
+            <button id="post-button" class="common-button">Post</button>
+        </form>
     </div>
 </section>
 <ul class="posts">
