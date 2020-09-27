@@ -1,20 +1,22 @@
 <section class = "section">
     
     <div class="container">
-        <h1>Sign up</h1>
+        <h1>sign up</h1>
         <form [formGroup]="loginForm">
             <div class="input">
                 <input formControlName="email" type="text" class="login-form" placeholder="email">
+                <mat-error class="input-error" ngxInputErrors [form]="loginForm" controlName="email" displayName="email" *ngIf="loginForm.get('email').value"></mat-error>
             </div>
             <div class="input">
                 <input formControlName="password" type="password" class="login-form" placeholder="password">
+                <mat-error class="input-error" ngxInputErrors [form]="loginForm" controlName="password" displayName="password" *ngIf="loginForm.get('password').value"></mat-error>
             </div>
-            <button (click)="login()" type="submit" class="submit-button">Login</button>
+            <button (click)="login()" type="submit" class="submit-button">login</button>
         </form>
         <div class="forgot-password">
             <span>i forgot my password</span>
         </div>
-    <span>don't have an account? Sign in <a href="/register">here</a></span>
+    <span>don't have an account? sign in <a href="/register">here</a></span>
     </div>
 </section>
 

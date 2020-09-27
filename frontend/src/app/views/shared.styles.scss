@@ -100,8 +100,23 @@ ul, li {
     margin-top: 20px;
     margin-bottom: 20px;
     width: 100%;
-  }
+}
+
+.input-error {
+    font-size: 12px;
+    color: #e6b31e;
+}
 
 .already-have-account {
-    margin-top: 6em;
+    margin-top: 2em;
+}
+
+.avatar-preview {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;   
+}
+
+.avatar-preview:hover{
+    
 }

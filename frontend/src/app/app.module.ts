@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { NgxInputErrorsModule } from 'ngx-input-errors';
+import { errorMessages } from './config/config-nx-input-errors';
  
 import { AppComponent } from './app.component';
 
@@ -28,6 +30,10 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     FontAwesomeModule,
     FormsModule,
     ReactiveFormsModule,
+    NgxInputErrorsModule.forRoot({
+      defaultLanguage: 'pt',
+      errorMessages 
+    }),
     routing,
   ],
   providers: [UserService],
