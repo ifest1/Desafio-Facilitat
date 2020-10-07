@@ -40,15 +40,6 @@ class LikeController < ApplicationController
         end
     end
 
-    def post_likes
-        if user = logged_in
-            post_likes = Like.where({post_id: like_params[:post_id]})
-            render json: post_likes, status: :ok
-        else
-            render json: {status: :bad_request}
-        end
-    end
-
     def like_params
         params.require(:like).permit(:post_id)
     end

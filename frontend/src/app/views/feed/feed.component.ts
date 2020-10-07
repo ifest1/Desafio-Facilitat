@@ -6,6 +6,7 @@ import { LikeService } from 'src/app/controllers/like.service';
 import { CommentService } from 'src/app/controllers/comment.service';
 import { PostService } from 'src/app/controllers/post.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Feed } from '../../models/feed/post';
 
 @Component({
   selector: 'app-feed',
@@ -13,10 +14,11 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./feed.component.scss', '../shared.styles.scss']
 })
 export class FeedComponent implements OnInit {
-  posts; user;
+  public feed: Feed;
+  public avatarPlaceholder = '../../../assets/placeholder.png';
+  public postImagePlaceholder = '../../../assets/image-placeholder.png';
+  public postForm: FormGroup;
   
-  postForm: FormGroup;
-
   //icones
   faEllipsisH = faEllipsisH;
   faThumbsUp = faThumbsUp;
@@ -35,10 +37,11 @@ export class FeedComponent implements OnInit {
     private postService: PostService,
     private formBuilder: FormBuilder,
     private router: Router) {
+      this.feed = new Feed();
       this.postForm = this.formBuilder.group({
         text: '',
         post_image: null,
-      })
+      });
    }
 
   ngOnInit(): void {
@@ -53,8 +56,8 @@ export class FeedComponent implements OnInit {
 
   loadFeed() {
     this.feedService.getPosts(this.token).subscribe((data: any) => {
-      this.posts = data.posts;
-      this.user = data.user;
+      this.feed = data;
+      console.log(data);
     });
   }
 
