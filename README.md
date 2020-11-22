@@ -15,4 +15,4 @@ Aplicação que será desenvolvida para o processo seletivo de dev estagiário, 
    - Interação no cadastro e redirecionamento para o feed
  
 # Cadastro
-O cadastro só é efetuado mediante email válido e senha maior que 8 dígitos (as credenciais acima foram feitas diretas pelo banco de dados para testes).
+O cadastro só é efetuado mediante email válido e senha maior que 8 dígitos.
