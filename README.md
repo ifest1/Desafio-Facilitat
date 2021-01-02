@@ -1,5 +1,4 @@
-# Desafio Facilitat
-Aplicação que será desenvolvida para o processo seletivo de dev estagiário, a ideia é criar um feed semelhante ao Facebook utilizando banco de dados relacional, Rails no backend e AngularJS no frontend.
+# Fakebook
 
 # Done
   - Tela de login
